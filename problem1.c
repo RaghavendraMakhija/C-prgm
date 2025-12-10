@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int isPrime(int n) {
+    if(n <= 1) return -1; // special: neither prime nor composite
+    for(int i = 2; i * i <= n; i++)
+        if(n % i == 0) return 0; // composite
+    return 1; // prime
+}int main()
+{
+    int a, b, c, sum;
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    sum = a + b + c;
+
+    if (sum % 2 == 0)
+        printf("Sum is even.\n");
+    else
+        printf("Sum is odd.\n");
+
+    int p = isPrime(sum);
+
+    if (p == 1)
+        printf("Sum is prime.\n");
+    else if (p == 0)
+        printf("Sum is composite.\n");
+    else
+        printf("Sum is neither prime nor composite.\n");
+
+    return 0;
+}
