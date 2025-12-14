@@ -1,38 +1,40 @@
 #include <stdio.h>
-#include <string.h>
 #include <ctype.h>
+#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
+int main(){
     char s[100];
-    int v = 0, c = 0;
+    int v=0, c=0, d=0;
 
     printf("Enter string: ");
-    gets(s);
+    scanf(" %[^\n]", s);
 
-    for(int i = 0; s[i]; i++) {
-        if(isalpha(s[i])) {
-            char ch = tolower(s[i]);
-            if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u') v++;
-            else c++;
+    for(int i=0; s[i]; i++){
+        char ch = tolower(s[i]);
+        if(isalpha(ch)){
+            if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u')
+                v++;
+            else
+                c++;
+        }
+        else if(isdigit(ch)){
+            d++;
         }
     }
 
-    printf("Vowels: %d\nConsonants: %d\n", v, c);
-
     srand(time(0));
-    int len = strlen(s);
-    for(int i = 0; i < len; i++) {
-        int r = rand() % len;
-        char temp = s[i];
+    int n = strlen(s);
+    for(int i=0; i<n; i++){
+        int r = rand() % n;
+        char t = s[i];
         s[i] = s[r];
-        s[r] = temp;
+        s[r] = t;
     }
 
-    printf("Scrambled: %s\n", s);
-    return 0;
-}
-    printf("Scrambled: %s\n", s);
+    printf("Vowels = %d\nConsonants = %d\nDigits = %d\nScrambled = %s",
+            v, c, d, s);
+
     return 0;
 }
