@@ -33,3 +33,6 @@ int main() {
     printf("Scrambled: %s\n", s);
     return 0;
 }
+    printf("Scrambled: %s\n", s);
+    return 0;
+}
