@@ -1,25 +1,24 @@
 #include <stdio.h>
 
-int main() {
-    int n, i;
-    printf("Enter size: ");
-    scanf("%d", &n);
-    int a[n];
-    int *p = a;
-
-    printf("Enter elements: ");
-    for(i = 0; i < n; i++) scanf("%d", p+i);
-
-    int max1 = *p, max2 = -999999;
-
-    for(i = 1; i < n; i++) {
-        if(*(p+i) > max1) {
-            max2 = max1;
-            max1 = *(p+i);
-        } else if(*(p+i) > max2 && *(p+i) != max1)
-            max2 = *(p+i);
-    }
-
-    printf("Second largest = %d\n", max2);
+int main(){
+    int n,a[50],*p=a;
+        printf("Enter size: ");
+            if(scanf("%d",&n)!=1 || n<2){
+        printf("Invalid! please input only integers!"); return 0; 
+        }
+        else printf("enter elements:");            
+            for(int i=0;i<n;i++) scanf("%d",p+i);
+        int max=*p, sec=-2147483648;
+            for(int i=1;i<n;i++){
+        if(*(p+i)>max){
+            sec=max; max=*(p+i);
+        }
+        else if(*(p+i)<max && *(p+i)>sec) sec=*(p+i);
+        }
+        if (scanf("%d",&n)!=1 || n<2)
+                    {
+                        printf("Invalid! please input only integers!"); return 0;
+                    }
+        printf("Second Largest = %d", sec);
     return 0;
 }
