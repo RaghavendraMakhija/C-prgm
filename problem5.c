@@ -1,26 +1,21 @@
 #include <stdio.h>
 
-int main() {
-    int n, i, j, k;
-    printf("Enter size: ");
-    scanf("%d", &n);
-    int a[n];
+int main(){
 
-    printf("Enter elements: ");
-    for(i = 0; i < n; i++) scanf("%d", &a[i]);
+int n,a[50];
+printf("Enter size: ");
+if(scanf("%d",&n)!=1 || n<=0){ printf("Invalid, please use only integer values!"); return 0; }
+printf("Enter elements: ");
 
-    for(i = 0; i < n; i++) {
-        for(j = i + 1; j < n; j++) {
-            if(a[i] == a[j]) {
-                for(k = j; k < n - 1; k++)
-                    a[k] = a[k + 1];
-                n--;
-                j--;
-            }
-        }
-    }
+for(int i=0;i<n;i++) scanf("%d",&a[i]);
+for(int i=0;i<n;i++)
+for(int j=i+1;j<n;)
+if(a[i]==a[j]){
+for(int k=j;k<n-1;k++) a[k]=a[k+1];
+n--;
+} else j++;
+printf("Array after removing duplicates: ");
+for(int i=0;i<n;i++) printf("%d ",a[i]);
 
-    printf("Array after removing duplicates: ");
-    for(i = 0; i < n; i++) printf("%d ", a[i]);
     return 0;
 }
