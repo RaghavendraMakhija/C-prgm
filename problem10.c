@@ -1,42 +1,37 @@
+/*Take each element of the 4x4 matrix from the user and print it, then add each element from the 4x4
+matrix and print the sum, print the sum of both the diagonals */
 #include <stdio.h>
-
-int main() {
-    int r, c;
-    int a[10][10], rot[10][10];
-    /* Read matrix size */
-    printf("Enter rows and columns: ");
-    if (scanf("%d %d", &r, &c) != 2 || r <= 0 || c <= 0 || r > 10 || c > 10) {
-        printf("Invalid size! Enter positive integers (max 10).\n");
-        return 1;
-    }
-    /* Read matrix elements */
-    printf("Enter %d integers:\n", r * c);
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            if (scanf("%d", &a[i][j]) != 1) {
-                printf("Wrong input! Integers only.\n");
-                return 1;
+int main(){
+    int a[4][4], sum = 0, d1 = 0, d2 = 0;
+    printf("Enter 16 integers for 4x4 matrix:\n");
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (scanf("%d", &a[i][j]) != 1)
+            { // scanf accepts 16 integer inputs from the user to fill a 4x4 matrix then stores the inputs in a 2D array.
+                printf("Wrong input! Please enter integers only.");
+                return 0;
             }
+            sum += a[i][j];
+            if (i == j)
+                d1 += a[i][j];
+            if (i + j == 3)
+                d2 += a[i][j];
         }
     }
-    /* Print original matrix */
-    printf("\nOriginal Matrix:\n");
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++)
+    printf("\nMatrix:\n");
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
             printf("%d ", a[i][j]);
         printf("\n");
     }
-    /* Rotate 90° clockwise and Print rotated matrix */
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            rot[j][r - 1 - i] = a[i][j];
-        }
-    }
-    printf("\nRotated Matrix (90 degrees Clockwise):\n");
-    for (int i = 0; i < c; i++) {
-        for (int j = 0; j < r; j++)
-            printf("%d ", rot[i][j]);
-        printf("\n");
-    }
+    printf("\nTotal Sum = %d", sum);             // Calculate the total sum of all matrix elements while reading the input.
+    printf("\nMain Diagonal Sum = %d", d1);      // Calculates the sum of the main diagonal elements where row index equals column index.
+    printf("\nSecondary Diagonal Sum = %d", d2); // Calculates the sum of the secondary diagonal elements where row index plus column index equals 3.
     return 0;
 }
+/*Code Logic:
+Displays the matrix in a structured 4x4 format.
+Prints the total sum, main diagonal sum, and secondary diagonal sum.*/
