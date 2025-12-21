@@ -1,15 +1,20 @@
 /*Create a program to simulate a simple login system with 3 attempts to enter the correct password. */
 #include <stdio.h>
 #include <string.h>
+
 int main()
 {
     char correct[20], pass[20];
     printf("Set your password: ");
-    scanf("%19s", correct);
+    fgets(correct, sizeof(correct), stdin);
+    correct[strcspn(correct, "\n")] = '\0';
+
     for (int i = 1; i <= 3; i++)
     {
         printf("Enter password: ");
-        scanf("%19s", pass);
+        fgets(pass, sizeof(pass), stdin);
+        pass[strcspn(pass, "\n")] = '\0';
+
         if (strcmp(pass, correct) == 0)
         {
             printf("Login Successful\n");
@@ -26,3 +31,4 @@ int main()
 -	Compares each input with the stored password using string comparison.
 -	Prints "Login Successful" and exits if the password matches.
 -	Locks the account after 3 incorrect attempts.*/
+
